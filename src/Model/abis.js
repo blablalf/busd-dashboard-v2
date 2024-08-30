@@ -1,4 +1,4 @@
-export const busdAbi = [
+export const BUSD_ABI = [
     {
       "inputs": [],
       "stateMutability": "nonpayable",

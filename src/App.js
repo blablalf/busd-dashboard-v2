@@ -1,8 +1,13 @@
-// import DoSomething from './Components/DoSomething.js';
 import './App.css';
 import WalletButton from './Components/WalletButton.js';
+import Modal from 'react-modal';
+import Popup from './Components/Popup.js';
+
+Modal.setAppElement('#root'); // For accessibility
 
 function App() {
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -10,6 +15,9 @@ function App() {
           <WalletButton />
         }
       </header>
+      <body>
+        <Popup/>
+      </body>
     </div>
   );
 }

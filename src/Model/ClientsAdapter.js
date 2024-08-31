@@ -1,6 +1,6 @@
 // client.js
 
-import { createWalletClient, createPublicClient, custom, http } from "viem";
+import { createWalletClient, createPublicClient, custom } from "viem";
 import { sepolia } from "viem/chains";
 import "viem/window";
 

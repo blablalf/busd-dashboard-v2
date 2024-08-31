@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
-import { getWallets } from "../Model/Clients.js";
+import { getWallets } from "../Model/ClientsAdapter.js";
+
+import { formatEther } from "viem";
 
 export default function WalletButton() {
 	//State variable for address & balance
@@ -15,13 +17,13 @@ export default function WalletButton() {
         // Instantiate a Wallet & Public Client
         const [walletClient, publicClient] = await getWallets();
 
-        const address = await walletClient.getAddresses();
-        console.log("address: " + address);
-        const balance = await publicClient.getBalance({ address });
+        const connectedAddress = await walletClient.getAddresses();
+        console.log("address: " + connectedAddress);
+        const balance = await publicClient.getBalance({ address:connectedAddress.toString() });
         console.log("balance: " + balance); 
 
         // Update values for address & balance state variable
-        setAddress(address);
+        setAddress(connectedAddress);
         setBalance(balance);
     } catch (error) {
 		// Error handling
@@ -58,7 +60,7 @@ function Status({ address, balance }) {
     <div className="flex items-center w-full">
       <div className="border bg-green-500 border-green-500 rounded-full w-1.5 h-1.5 mr-2"></div>
       <div className="text-xs md:text-xs">
-        {address} <br /> Balance: {balance.toString()}
+        {address} <br /> Balance: { formatEther(balance).toString() }
       </div>
     </div>
   );

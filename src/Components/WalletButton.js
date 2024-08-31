@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { getWallets } from "../Model/ClientsAdapter.js";
+import { initClient, getAddress, getBalance } from "../Model/ClientsAdapter.js";
 
 import { formatEther } from "viem";
 
@@ -9,59 +9,54 @@ export default function WalletButton() {
     const [address, setAddress] = useState(0);
 	const [balance, setBalance] = useState(0);
 
-	// Requests connection and retrieves the address of wallet.
-	// Retrieves the balance of the address
-	// Updates the value for address & balance variable
     async function handleClick() {
-    try {
-        // Instantiate a Wallet & Public Client
-        const [walletClient, publicClient] = await getWallets();
-
-        const connectedAddress = await walletClient.getAddresses();
-        console.log("address: " + connectedAddress);
-        const balance = await publicClient.getBalance({ address:connectedAddress.toString() });
-        console.log("balance: " + balance); 
-
-        // Update values for address & balance state variable
-        setAddress(connectedAddress);
-        setBalance(balance);
-    } catch (error) {
-		// Error handling
-        alert(`Transaction failed: ${error}`);
+        await initClient();
+        try {
+            const address_ = await getAddress();
+            const balance_ = await getBalance(address_.toString());
+            setAddress(address_);
+            setBalance(balance_);
+            console.log("address: " + address_);
+            console.log("balance: " + balance_); 
+        } catch (error) {
+            alert(`Transaction failed: ${error}`);
+        }
     }
-}
 
-return (
-    <>
-        <Status address={address} balance={balance} />
-        <button className="px-8 py-2 rounded-md bg-[#1e2124] flex flex-row items-center justify-center border border-[#1e2124] hover:border hover:border-indigo-600 shadow-md shadow-indigo-500/10"
-        onClick={handleClick}
-    >
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="MetaMask Fox" style={{ width: "25px", height: "25px" }} />
-        <h1 className="mx-auto">Connect Wallet</h1>
-        </button>
-    </>
-);
-}
-
-// Displays the wallet address once it’s successfully connected
-// You do not have to read it, it's just frontend stuff
-function Status({ address, balance }) {
-  if (!address) {
     return (
-      <div className="flex items-center">
-        <div className="border bg-red-600 border-red-600 rounded-full w-1.5 h-1.5 mr-2"></div>
-        <div>Disconnected</div>
-      </div>
+        <>
+            <button onClick={handleClick}>
+                <Status address={address} balance={balance} />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="MetaMask Fox" style={{ width: "25px", height: "25px" }} />
+            </button>
+        </>
     );
-  }
+}
 
-  return (
-    <div className="flex items-center w-full">
-      <div className="border bg-green-500 border-green-500 rounded-full w-1.5 h-1.5 mr-2"></div>
-      <div className="text-xs md:text-xs">
-        {address} <br /> Balance: { formatEther(balance).toString() }
-      </div>
-    </div>
-  );
+function formatAddress(_address) {
+    if (!_address) return ''; // undefined or null
+    let addressStr = _address.toString(); 
+
+    const firstPart = addressStr.substring(0, 6);
+    const lastPart = addressStr.substring(addressStr.length - 4);
+
+    return firstPart + '...' + lastPart;
+}
+
+function Status({ address, balance }) {
+    if (!address) {
+        return (
+            <div>
+                <p>Disconnected</p>
+            </div>
+        );
+    }
+
+    return (
+        <div>
+            <p>{formatAddress(address)}</p>
+            <br />
+            <p>Balance: { formatEther(balance) }</p>
+        </div>
+    );
 }

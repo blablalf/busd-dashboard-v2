@@ -48,3 +48,15 @@ export async function getAddress() {
 export async function getBalance(anAddress) {
     return await publicClient.getBalance({ address: anAddress });
 };
+
+export function isInitiated() {
+    return connected;
+}
+
+export async function getChainId() {
+    return await publicClient.getChainId();
+}
+
+export async function isBadNetwork() {
+    return isInitiated && await getChainId() !== sepolia.id;
+}

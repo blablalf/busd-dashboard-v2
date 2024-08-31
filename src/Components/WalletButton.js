@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
-import { initClient, getAddress, getBalance } from "../Model/ClientsAdapter.js";
+import { initClient, getAddress, getBalance, isBadNetwork } from "../Model/ClientsAdapter.js";
 
 import { formatEther } from "viem";
 
-export default function WalletButton() {
+export default function WalletButton({ isBadNetworkCallback }) {
 	//State variable for address & balance
     const [address, setAddress] = useState(0);
 	const [balance, setBalance] = useState(0);
@@ -18,6 +18,9 @@ export default function WalletButton() {
             setBalance(balance_);
             console.log("address: " + address_);
             console.log("balance: " + balance_); 
+            const _isBadNetwork = await isBadNetwork()
+            console.log("isBadNetwork: " + _isBadNetwork);
+            isBadNetworkCallback(_isBadNetwork);
         } catch (error) {
             alert(`Transaction failed: ${error}`);
         }

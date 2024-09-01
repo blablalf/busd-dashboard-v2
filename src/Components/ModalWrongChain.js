@@ -1,26 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
+import { switchChain, getChainId } from "../Model/ClientsAdapter.js";
 
 ReactModal.setAppElement('#root');
 
 const ModalWrongChain = ({ isOpen, onClose }) => {
-    // const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const chainId = 1; // Hardcoded for now
+    const [chainId, setChainId] = useState(null);
 
-    // const addNetwork = () => {
-    //     // todo: Add Sepolia network
-    //     changeNetwork();
-    // };
-
-    // const changeNetwork = () => {
-    //     // todo: Change network
-    //     closeModal();
-    // };
-
-    // const closeModal = () => {
-    //     setModalIsOpen(false);
-    // };
+    useEffect(() => {
+        if (isOpen) {
+            const fetchChainId = async () => {
+                const id = await getChainId();
+                setChainId(id);
+            };
+            fetchChainId();
+        }
+    }, [isOpen]);
 
     return (
         <ReactModal
@@ -47,7 +43,7 @@ const ModalWrongChain = ({ isOpen, onClose }) => {
             >
                 <h2>Wrong Network</h2>
                 <p>You are connected to the following chainId: {chainId}</p>
-                {/* <button onClick={addNetwork}>Add Sepolia network</button> */}
+                <button onClick={switchChain}>Change to Sepolia network</button>
             </ReactModal>
     );
 };

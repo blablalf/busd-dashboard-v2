@@ -1,9 +1,10 @@
 import './App.css';
 import WalletButton from './Components/WalletButton.js';
-import React, { useState } from 'react';
-// import Modal from 'react-modal';
+import React, { useState, useEffect } from 'react';
 import ModalWrongChain from './Components/ModalWrongChain.js';
 import Popup from './Components/Popup.js';
+
+import { isBadNetworkBis } from "./Model/ClientsAdapter.js";
 
 // Modal.setAppElement('#root'); // For accessibility
 
@@ -16,24 +17,29 @@ function App() {
     setIsBadNetwork(_isBadNetwork);
   };
 
-  // const openModal = () => {
-  //   setModalIsOpen(true);
-  // };
-
   const closeModal = () => {
     setIsBadNetwork(false);
   };
 
+  useEffect(() => {
+    const checkNetwork = async () => {
+      const _isBadNetwork = await isBadNetworkBis();
+      handleWrongChain(_isBadNetwork);
+    };
+
+    const intervalId = setInterval(checkNetwork, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array to run once on mount
+
   return (
     <div className="App">
       <header className="App-header">
-        {
           <WalletButton isBadNetworkCallback = { handleWrongChain }/>
-        }
       </header>
       <div>
         <Popup/>
-        <ModalWrongChain isOpen={ isBadNetwork } onClose={closeModal}/>
+        <ModalWrongChain isOpen={ isBadNetwork } onClose={ closeModal }/>
       </div>
     </div>
   );

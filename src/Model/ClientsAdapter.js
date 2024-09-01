@@ -1,5 +1,3 @@
-// client.js
-
 import { createWalletClient, createPublicClient, custom } from "viem";
 import { sepolia } from "viem/chains";
 import "viem/window";
@@ -34,7 +32,7 @@ export async function initClient() {
             chain: sepolia,
             transport: transport,
         });
-        return true;
+        return connected = true;
     } else {
         console.log("Wallet already connected");
         return false;
@@ -54,9 +52,29 @@ export function isInitiated() {
 }
 
 export async function getChainId() {
-    return await publicClient.getChainId();
+    return isInitiated ? await publicClient.getChainId() : 0;
 }
 
 export async function isBadNetwork() {
-    return isInitiated && await getChainId() !== sepolia.id;
+    return isInitiated() && await getChainId() !== sepolia.id;
+}
+
+export async function isBadNetworkBis() {
+    return isInitiated() && await getChainId() !== sepolia.id;
+}
+
+export async function switchChain() {
+    try {
+        await walletClient.switchChain({ id: sepolia.id });
+        console.log("Successfully switched to targeted chain");
+    } catch (error) {
+        if (error.code === 4902) {
+            console.log("Chain not available");
+            try {
+                await walletClient.addChain({ chain: sepolia });
+            } catch (error) {
+                console.error("Failed to add chain", error);
+            }
+        }
+    }
 }

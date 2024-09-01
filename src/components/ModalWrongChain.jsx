@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
-import { switchChain, getChainId } from "../utils/ClientsAdapter.js";
+import { switchChain, getChainId } from "../adapters/ClientsAdapter.js";
 
 ReactModal.setAppElement('#root');
 

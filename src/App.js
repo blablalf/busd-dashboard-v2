@@ -2,7 +2,6 @@ import './App.css';
 import WalletButton from './Components/WalletButton.js';
 import React, { useState, useEffect } from 'react';
 import ModalWrongChain from './Components/ModalWrongChain.js';
-import Popup from './Components/Popup.js';
 
 import { isBadNetworkBis } from "./Model/ClientsAdapter.js";
 
@@ -38,7 +37,6 @@ function App() {
           <WalletButton isBadNetworkCallback = { handleWrongChain }/>
       </header>
       <div>
-        <Popup/>
         <ModalWrongChain isOpen={ isBadNetwork } onClose={ closeModal }/>
       </div>
     </div>

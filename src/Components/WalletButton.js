@@ -5,7 +5,7 @@ import { initClient, getAddress, getBalance, isBadNetwork } from "../Model/Clien
 import { formatEther } from "viem";
 
 export default function WalletButton({ isBadNetworkCallback }) {
-	//State variable for address & balance
+
     const [address, setAddress] = useState(0);
 	const [balance, setBalance] = useState(0);
 

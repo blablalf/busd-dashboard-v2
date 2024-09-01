@@ -1,11 +1,20 @@
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
+
 import './App.css';
-import WalletButton from './Components/WalletButton.js';
+
+import LoginButton from './components/LoginButton.jsx';
 import React, { useState, useEffect } from 'react';
-import ModalWrongChain from './Components/ModalWrongChain.js';
+import ModalWrongChain from './components/ModalWrongChain.jsx';
 
-import { isBadNetworkBis } from "./Model/ClientsAdapter.js";
+import { isBadNetworkBis } from "./utils/ClientsAdapter.js";
 
-// Modal.setAppElement('#root'); // For accessibility
+const queryClient = new QueryClient()
 
 function App() {
 
@@ -32,14 +41,16 @@ function App() {
   }, []); // Empty dependency array to run once on mount
 
   return (
-    <div className="App">
-      <header className="App-header">
-          <WalletButton isBadNetworkCallback = { handleWrongChain }/>
-      </header>
-      <div>
-        <ModalWrongChain isOpen={ isBadNetwork } onClose={ closeModal }/>
+    <QueryClientProvider client={queryClient}>
+      <div className="App">
+        <header className="App-header">
+            <LoginButton isBadNetworkCallback = { handleWrongChain }/>
+        </header>
+        <div>
+          <ModalWrongChain isOpen={ isBadNetwork } onClose={ closeModal }/>
+        </div>
       </div>
-    </div>
+    </QueryClientProvider>
   );
 }
 

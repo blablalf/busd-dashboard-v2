@@ -2,6 +2,8 @@ import { createWalletClient, createPublicClient, custom } from "viem";
 import { sepolia } from "viem/chains";
 import "viem/window";
 
+import { tokenAbi } from "../abis/token.js";
+
 export async function clientLogin() {
   let transport;
   if (window.ethereum) {
@@ -54,16 +56,21 @@ export function resetClients() {
   window.publicClient = null;
 }
 
+export function isRightChainId(chainId) {
+  return chainId === sepolia.id;
+}
+
 export async function getChainId() {
-  return getIsLoggedIn() ? await window.publicClient.getChainId() : 0;
+  return await window.publicClient.getChainId();
 }
 
-export async function isBadNetwork() {
-  return getIsLoggedIn() && (await getChainId()) !== sepolia.id;
-}
-
-export async function isBadNetworkBis() {
-  return getIsLoggedIn() && (await getChainId()) !== sepolia.id;
+export async function getTokenName(tokenAddress) {
+  const name = await window.publicClient.readContract({
+    address: tokenAddress,
+    abi: tokenAbi,
+    functionName: "name",
+  });
+  return name;
 }
 
 export async function switchChain() {
@@ -80,4 +87,8 @@ export async function switchChain() {
       }
     }
   }
+}
+
+export function getTokenAddress() {
+  return process.env.REACT_APP_TOKEN_ADDRESS;
 }

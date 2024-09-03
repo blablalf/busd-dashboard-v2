@@ -20,10 +20,7 @@ export default function LoginButton({ isBadNetworkCallback }) {
       const balance_ = await getBalance(address_.toString());
       setAddress(address_);
       setBalance(balance_);
-      console.log("address: " + address_);
-      console.log("balance: " + balance_);
       const _isBadNetwork = await isBadNetwork();
-      console.log("isBadNetwork: " + _isBadNetwork);
       isBadNetworkCallback(_isBadNetwork);
     } catch (error) {
       alert(`Transaction failed: ${error}`);

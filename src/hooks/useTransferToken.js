@@ -12,11 +12,9 @@ export default function useTransferToken() {
     mutationFn: ({ to, amount }) =>
       transferToken(tokenAddress, userAddress, to, amount),
     onSuccess: (hash) => {
-      console.log(hash);
       toast.success("Transfer transaction sent. Transaction hash: " + hash);
     },
     onError: (error) => {
-      console.log(error);
       toast.error("Transfer transaction failed");
     },
   });

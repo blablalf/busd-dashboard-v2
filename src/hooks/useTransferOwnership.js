@@ -1,6 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { getTokenAddress, transferOwnership } from "../adapters/ClientsAdapter.js";
+import {
+  getTokenAddress,
+  transferOwnership,
+} from "../adapters/ClientsAdapter.js";
 import toast from "react-hot-toast";
 import useGetUserAddress from "./useGetUserAddress.js";
 
@@ -9,13 +12,14 @@ export default function useTransferOwnership() {
   const { data: userAddress } = useGetUserAddress();
 
   return useMutation({
-    mutationFn: (newOwner) => transferOwnership(tokenAddress, userAddress, newOwner),
+    mutationFn: (newOwner) =>
+      transferOwnership(tokenAddress, userAddress, newOwner),
     onSuccess: (hash) => {
-      console.log(hash);
-      toast.success("TransferOwnership transaction sent. Transaction hash: " + hash);
+      toast.success(
+        "TransferOwnership transaction sent. Transaction hash: " + hash
+      );
     },
     onError: (error) => {
-      console.log(error);
       toast.error("TransferOwnership transaction failed");
     },
   });

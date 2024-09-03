@@ -10,11 +10,9 @@ export default function useBurnToken() {
   return useMutation({
     mutationFn: (amount) => burnToken(tokenAddress, userAddress, amount),
     onSuccess: (hash) => {
-      console.log(hash);
       toast.success("Burn transaction sent. Transaction hash: " + hash);
     },
     onError: (error) => {
-      console.log(error);
       toast.error("Burn transaction failed");
     },
   });

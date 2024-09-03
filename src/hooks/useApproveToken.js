@@ -12,11 +12,9 @@ export default function useApproveToken() {
     mutationFn: ({ spender, amount }) =>
       approveToken(tokenAddress, ownerAddress, spender, amount),
     onSuccess: (hash) => {
-      console.log(hash);
       toast.success("Approve transaction sent. Transaction hash: " + hash);
     },
     onError: (error) => {
-      console.log(error);
       toast.error("Approve transaction failed");
     },
   });

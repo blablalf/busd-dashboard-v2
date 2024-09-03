@@ -11,9 +11,13 @@ export default function useWatchMintEvent(amount) {
     const refetchBalance = () => {
       queryClient.invalidateQueries(["tokenBalance", userAddress]);
     };
-    const unlisten = watchMintEvent(getTokenAddress(), userAddress, amount, refetchBalance);
-    console.log("watching mint event");
-    return () => {  
+    const unlisten = watchMintEvent(
+      getTokenAddress(),
+      userAddress,
+      amount,
+      refetchBalance
+    );
+    return () => {
       unlisten();
     };
   }, [queryClient, userAddress, amount]);

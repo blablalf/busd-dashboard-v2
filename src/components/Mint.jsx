@@ -11,7 +11,6 @@ export default function Mint() {
     event.preventDefault();
     const amount = event.target.elements.amount.value;
     const parsedAmount = parseFloat(amount);
-    console.log(parsedAmount);
     mint(parsedAmount);
     setAmount(parsedAmount);
   }

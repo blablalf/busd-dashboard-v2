@@ -6,16 +6,12 @@ import useGetUserAddress from "./useGetUserAddress.js";
 export default function useGetAllowance(spender) {
   const { data: userAddress } = useGetUserAddress();
 
-  console.log("allowance:userAddress :" + userAddress);
-  console.log("allowance:spender :" + spender);
-
   const getTokenAllowance = async () => {
     const allowance = await getAllowance(
       getTokenAddress(),
       userAddress,
       spender
     );
-    console.log("allowance :" + allowance);
     return allowance.toString();
   };
 

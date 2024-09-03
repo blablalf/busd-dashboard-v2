@@ -8,7 +8,6 @@ export default function Allowance() {
   function onSubmit(event) {
     event.preventDefault();
     setSpender(event.target.elements.spender.value);
-    console.log("spender: " + spender);
   }
 
   return (

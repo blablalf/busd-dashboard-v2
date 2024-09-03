@@ -10,11 +10,9 @@ export default function useMintToken() {
   return useMutation({
     mutationFn: (amount) => mintToken(tokenAddress, userAddress, amount),
     onSuccess: (hash) => {
-      console.log(hash);
       toast.success("Mint transaction sent. Transaction hash: " + hash);
     },
     onError: (error) => {
-      console.log(error);
       toast.error("Mint transaction failed");
     },
   });

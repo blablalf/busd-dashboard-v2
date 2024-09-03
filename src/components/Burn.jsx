@@ -2,34 +2,34 @@ import { useState } from "react";
 import useGetEtherBalance from "../hooks/useGetEtherBalance";
 import useGetTokenBalance from "../hooks/useGetTokenBalance";
 import useGetTokenTotalSupply from "../hooks/useGetTokenTotalSupply";
-import useMintToken from "../hooks/useMintToken";
-import useWatchMintEvent from "../hooks/useWatchMintEvent";
+// import useWatchMintEvent from "../hooks/useWatchMintEvent";
+import useBurnToken from "../hooks/useBurnToken";
 
-export default function Mint() {
+export default function Burn() {
   const [amount, setAmount] = useState();
-  const { mutate: mint } = useMintToken();
+  const { mutate: burn } = useBurnToken();
   const { data: balance } = useGetTokenBalance();
   console.log("token balance :" + balance);
   const { data: totalSupply } = useGetTokenTotalSupply();
   console.log("token total supply :" + totalSupply);
   const { data: etherBalance } = useGetEtherBalance();
   console.log("ether balance :" + etherBalance);
-  useWatchMintEvent(amount);
+  // useWatchBurnEvent(amount);
 
   function onSubmit(event) {
     event.preventDefault();
     const amount = event.target.elements.amount.value;
     const parsedAmount = parseFloat(amount);
     console.log(parsedAmount);
-    mint(parsedAmount);
+    burn(parsedAmount);
     setAmount(parsedAmount);
   }
 
   return (
     <form onSubmit={onSubmit}>
-      <h3>Mint tokens!</h3>
+      <h3>Burn tokens!</h3>
       <input type="number" placeholder="Amount" name="amount" />
-      <button type="submit">Mint</button>
+      <button type="submit">Burn</button>
     </form>
   );
 }

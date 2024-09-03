@@ -1,9 +1,9 @@
-import { useState } from "react";
+// import { useState } from "react";
 // import useWatchMintEvent from "../hooks/useWatchMintEvent";
 import useBurnToken from "../hooks/useBurnToken";
 
 export default function Burn() {
-  const [amount, setAmount] = useState();
+  // const [amount, setAmount] = useState();
   const { mutate: burn } = useBurnToken();
   // useWatchBurnEvent(amount);
 
@@ -12,7 +12,7 @@ export default function Burn() {
     const amount = event.target.elements.amount.value;
     const parsedAmount = parseFloat(amount);
     burn(parsedAmount);
-    setAmount(parsedAmount);
+    // setAmount(parsedAmount);
   }
 
   return (

@@ -12,7 +12,7 @@ export default function useGetEtherBalance() {
   }
 
   return useQuery({
-    queryKey: ["tokenBalance", userAddress],
+    queryKey: ["etherBalance", userAddress],
     queryFn: _getEtherBalance,
     enabled: userAddress ? true : false,
     refetchInterval: 5000,

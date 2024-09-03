@@ -1,19 +1,10 @@
 import { useState } from "react";
-import useGetEtherBalance from "../hooks/useGetEtherBalance";
-import useGetTokenBalance from "../hooks/useGetTokenBalance";
-import useGetTokenTotalSupply from "../hooks/useGetTokenTotalSupply";
 import useMintToken from "../hooks/useMintToken";
 import useWatchMintEvent from "../hooks/useWatchMintEvent";
 
 export default function Mint() {
   const [amount, setAmount] = useState();
   const { mutate: mint } = useMintToken();
-  const { data: balance } = useGetTokenBalance();
-  console.log("token balance :" + balance);
-  const { data: totalSupply } = useGetTokenTotalSupply();
-  console.log("token total supply :" + totalSupply);
-  const { data: etherBalance } = useGetEtherBalance();
-  console.log("ether balance :" + etherBalance);
   useWatchMintEvent(amount);
 
   function onSubmit(event) {

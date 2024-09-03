@@ -11,11 +11,11 @@ import React from 'react';
 import Header from './components/Header.jsx';
 import Modals from "./components/Modals.jsx";
 import Home from "./components/Home.jsx";
+import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient()
 
 function App() {
-
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
@@ -23,6 +23,7 @@ function App() {
         <Header />
         <Home />
         <Modals />
+        <Toaster />
       </div>
     </QueryClientProvider>
   );

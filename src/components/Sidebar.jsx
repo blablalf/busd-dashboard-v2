@@ -4,7 +4,7 @@ import { getTokenAddress } from "../adapters/ClientsAdapter";
 
 export default function Sidebar() {
   const tokenAddress = getTokenAddress();
-  const {data: tokenName} = useGetTokenName(tokenAddress);
+  const {data: tokenName} = useGetTokenName();
 
   return (
     <div>

@@ -4,6 +4,33 @@ import "viem/window";
 
 import { tokenAbi } from "../abis/token.js";
 
+export function getIsLoggedIn() {
+  return window.publicClient && window.walletClient;
+}
+
+export function resetClients() {
+  window.walletClient = null;
+  window.publicClient = null;
+}
+
+export function isRightChainId(chainId) {
+  return chainId === sepolia.id;
+}
+
+export function getTokenAddress() {
+  return process.env.REACT_APP_TOKEN_ADDRESS;
+}
+
+export function watchMintEvent(tokenAddress, toAddress, onLogs) {
+  return window.publicClient.watchContractEvent({
+    address: tokenAddress,
+    abi: tokenAbi,
+    eventName: "Transfer",
+    args: { to: toAddress },
+    onLogs,
+  });
+}
+
 export async function clientLogin() {
   let transport;
   if (window.ethereum) {
@@ -43,21 +70,8 @@ export async function getUserAddress() {
   return addresses[0];
 }
 
-export async function getBalance(anAddress) {
-  return await window.publicClient.getBalance({ address: anAddress });
-}
-
-export function getIsLoggedIn() {
-  return window.publicClient && window.walletClient;
-}
-
-export function resetClients() {
-  window.walletClient = null;
-  window.publicClient = null;
-}
-
-export function isRightChainId(chainId) {
-  return chainId === sepolia.id;
+export async function getEtherBalance(accountAddress) {
+  return await window.publicClient.getBalance({ address: accountAddress });
 }
 
 export async function getChainId() {
@@ -71,6 +85,25 @@ export async function getTokenName(tokenAddress) {
     functionName: "name",
   });
   return name;
+}
+
+export async function getTokenBalance(tokenAddress, userAddress) {
+  const balance = await window.publicClient.readContract({
+    address: tokenAddress,
+    abi: tokenAbi,
+    functionName: "balanceOf",
+    args: [userAddress],
+  });
+  return balance;
+}
+
+export async function getTokenTotalSupply(tokenAddress) {
+  const balance = await window.publicClient.readContract({
+    address: tokenAddress,
+    abi: tokenAbi,
+    functionName: "totalSupply",
+  });
+  return balance;
 }
 
 export async function switchChain() {
@@ -89,6 +122,13 @@ export async function switchChain() {
   }
 }
 
-export function getTokenAddress() {
-  return process.env.REACT_APP_TOKEN_ADDRESS;
+export async function mintToken(tokenAddress, userAddress, amount) {
+  return await window.walletClient.writeContract({
+    address: tokenAddress,
+    account: userAddress,
+    abi: tokenAbi,
+    functionName: "mint",
+    args: [amount],
+  });
 }
+

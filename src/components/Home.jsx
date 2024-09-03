@@ -1,5 +1,6 @@
 import useIsLoggedIn from "../hooks/useIsLoggedIn.js";
-import SideBar from "./Sidebar.jsx";
+import Mint from "./Mint.jsx";
+import UserHeader from "./UserHeader.jsx";
 
 export default function Home() {
   const isLoggedIn = useIsLoggedIn();
@@ -8,7 +9,8 @@ export default function Home() {
     <div>
       {isLoggedIn ? (
         <>
-          <SideBar />
+          <UserHeader />
+          <Mint />
         </>
       ) : (
         <></>

@@ -26,7 +26,11 @@ export function watchMintEvent(tokenAddress, toAddress, _amount, onLogs) {
     address: tokenAddress,
     abi: tokenAbi,
     eventName: "Transfer",
-    args: { from: "0x0000000000000000000000000000000000000000", to: toAddress, amount: _amount},
+    args: {
+      from: "0x0000000000000000000000000000000000000000",
+      to: toAddress,
+      amount: _amount,
+    },
     onLogs,
   });
 }
@@ -141,7 +145,12 @@ export async function mintToken(tokenAddress, userAddress, amount) {
   });
 }
 
-export async function transferToken(tokenAddress, userAddress, toAddress, amount) {
+export async function transferToken(
+  tokenAddress,
+  userAddress,
+  toAddress,
+  amount
+) {
   return await window.walletClient.writeContract({
     address: tokenAddress,
     account: userAddress,
@@ -151,7 +160,12 @@ export async function transferToken(tokenAddress, userAddress, toAddress, amount
   });
 }
 
-export async function approveToken(tokenAddress, ownerAddress, spenderAddress, amount) {
+export async function approveToken(
+  tokenAddress,
+  ownerAddress,
+  spenderAddress,
+  amount
+) {
   return await window.walletClient.writeContract({
     address: tokenAddress,
     account: ownerAddress,
@@ -161,7 +175,13 @@ export async function approveToken(tokenAddress, ownerAddress, spenderAddress, a
   });
 }
 
-export async function transferFromToken(tokenAddress, userAddress, senderAddress, recipientAddress, amount) {
+export async function transferFromToken(
+  tokenAddress,
+  userAddress,
+  senderAddress,
+  recipientAddress,
+  amount
+) {
   return await window.walletClient.writeContract({
     address: tokenAddress,
     account: userAddress,
@@ -181,7 +201,11 @@ export async function burnToken(tokenAddress, userAddress, amount) {
   });
 }
 
-export async function transferOwnership(tokenAddress, userAddress, newOwnerAddress) {
+export async function transferOwnership(
+  tokenAddress,
+  userAddress,
+  newOwnerAddress
+) {
   return await window.walletClient.writeContract({
     address: tokenAddress,
     account: userAddress,
@@ -196,5 +220,13 @@ export async function getTokenOwner(tokenAddress) {
     address: tokenAddress,
     abi: tokenAbi,
     functionName: "owner",
+  });
+}
+
+export async function getTokenDecimals(tokenAddress) {
+  return await window.publicClient.readContract({
+    address: tokenAddress,
+    abi: tokenAbi,
+    functionName: "decimals",
   });
 }

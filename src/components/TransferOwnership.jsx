@@ -1,8 +1,8 @@
-import { useState } from "react";
+// import { useState } from "react";
 import useTransferOwnership from "../hooks/useTransferOwnership";
 
 export default function TransferOwnership() {
-  const [owner, setOwner] = useState();
+  // const [owner, setOwner] = useState();
   const { mutate: transferOwner } = useTransferOwnership();
   // useWatchTransferOwnershipEvent(newOwner);
 
@@ -10,7 +10,7 @@ export default function TransferOwnership() {
     event.preventDefault();
     const owner = event.target.elements.owner.value;
     transferOwner(owner);
-    setOwner(owner);
+    // setOwner(owner);
   }
 
   return (

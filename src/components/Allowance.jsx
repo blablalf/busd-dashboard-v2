@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import useGetAllowance from "../hooks/useGetAllowance";
-import { Button, Text, TextField } from "@radix-ui/themes";
 import { getTokenAddress } from "../adapters/ClientsAdapter";
 import useGetTokenDecimals from "../hooks/useGetTokenDecimals";
 import { formatUnits } from "viem";
@@ -24,10 +23,10 @@ export default function Allowance() {
 
   return (
     <form onSubmit={onSubmit}>
-      <Text>Check a spender allowance!</Text>
-      <TextField.Root placeholder="Spender address"  name="spender" />
-      <Button type="submit">Check</Button>
-      <Text>Allowance: {formattedAllowance}</Text>
+      <h3>Check a spender allowance!</h3>
+      <input placeholder="Spender address" name="spender" />
+      <button type="submit">Check</button>
+      <p>Allowance: {formattedAllowance}</p>
     </form>
   );
 }

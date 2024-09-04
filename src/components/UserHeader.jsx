@@ -6,7 +6,6 @@ import useGetTokenBalance from "../hooks/useGetTokenBalance";
 import useGetTokenTotalSupply from "../hooks/useGetTokenTotalSupply";
 
 import { formatEther, formatUnits } from "viem";
-import { Text } from "@radix-ui/themes";
 import useGetTokenDecimals from "../hooks/useGetTokenDecimals";
 import { useEffect, useState } from "react";
 
@@ -31,16 +30,16 @@ export default function UserHeader() {
 
   return (
     <div>
-      <Text>Ether balance: {formattedEtherBalance}</Text>
-      <Text>
+      <p>Ether balance: {formattedEtherBalance}</p>
+      <p>
         {tokenName} total supply: {formattedSupply}
-      </Text>
-      <Text>
+      </p>
+      <p>
         {tokenName} balance: {formattedTokenBalance}
-      </Text>
-      <Text>
+      </p>
+      <p>
         {tokenName} address: {tokenAddress}
-      </Text>
+      </p>
     </div>
   );
 }

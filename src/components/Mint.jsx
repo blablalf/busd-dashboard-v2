@@ -1,4 +1,3 @@
-import { Button, Text, TextField } from "@radix-ui/themes";
 import { parseUnits } from "viem";
 
 import { useState } from "react";
@@ -24,15 +23,15 @@ export default function Mint() {
 
   return (
     <form onSubmit={onSubmit}>
-      <Text>Mint tokens!</Text>
-      <TextField.Root
+      <h3>Mint tokens!</h3>
+      <input
         type="number"
         step={stepValue ? stepValue: getStep(18)}
         min="0"
         placeholder="Amount"
         name="amount"
       />
-      <Button type="submit">Mint</Button>
+      <button type="submit">Mint</button>
     </form>
   );
 }

@@ -1,6 +1,5 @@
 // import { useState } from "react";
 import useTransferOwnership from "../hooks/useTransferOwnership";
-import { Button, Text, TextField } from "@radix-ui/themes";
 
 export default function TransferOwnership() {
   // const [owner, setOwner] = useState();
@@ -16,9 +15,9 @@ export default function TransferOwnership() {
 
   return (
     <form onSubmit={onSubmit}>
-      <Text>Transfer ownership</Text>
-      <TextField.Root type="text" placeholder="New owner" name="owner" />
-      <Button type="submit">Transfer Owner</Button>
+      <h3>Transfer ownership</h3>
+      <input type="text" placeholder="New owner" name="owner" />
+      <button type="submit">Transfer Owner</button>
     </form>
   );
 }

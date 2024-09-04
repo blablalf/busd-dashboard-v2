@@ -1,7 +1,6 @@
 // import { useState } from "react";
 // import useWatchMintEvent from "../hooks/useWatchMintEvent";
 import useBurnToken from "../hooks/useBurnToken";
-import { Button, Text, TextField } from "@radix-ui/themes";
 import { getStep } from "../utils/Decimals";
 import useGetTokenDecimals from "../hooks/useGetTokenDecimals";
 import { parseUnits } from "viem";
@@ -23,15 +22,15 @@ export default function Burn() {
 
   return (
     <form onSubmit={onSubmit}>
-      <Text>Burn tokens!</Text>
-      <TextField.Root
+      <h3>Burn tokens!</h3>
+      <input
         type="number"
         step={stepValue ? stepValue : getStep(18)}
         min="0"
         placeholder="Amount"
         name="amount"
       />
-      <Button type="submit">Burn</Button>
+      <button type="submit">Burn</button>
     </form>
   );
 }

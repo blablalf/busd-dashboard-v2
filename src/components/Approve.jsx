@@ -1,5 +1,4 @@
 import useApproveToken from "../hooks/useApproveToken";
-import { Button, Text, TextField } from "@radix-ui/themes";
 import { getStep } from "../utils/Decimals";
 import useGetTokenDecimals from "../hooks/useGetTokenDecimals";
 import { parseUnits } from "viem";
@@ -21,16 +20,16 @@ export default function Approve() {
 
   return (
     <form onSubmit={onSubmit}>
-      <Text>Approve addresses!</Text>
-      <TextField.Root type="text" placeholder="Spender" name="spender" />
-      <TextField.Root
+      <h3>Approve addresses!</h3>
+      <input type="text" placeholder="Spender" name="spender" />
+      <input
         type="number"
         step={stepValue ? stepValue : getStep(18)}
         min="0"
         placeholder="Amount"
         name="amount"
       />
-      <Button type="submit">Approve</Button>
+      <button type="submit">Approve</button>
     </form>
   );
 }

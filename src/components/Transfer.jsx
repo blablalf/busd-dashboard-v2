@@ -1,5 +1,4 @@
 import useTransferToken from "../hooks/useTransferToken";
-import { Button, Text, TextField } from "@radix-ui/themes";
 import { getStep } from "../utils/Decimals";
 import useGetTokenDecimals from "../hooks/useGetTokenDecimals";
 import { parseUnits } from "viem";
@@ -21,16 +20,16 @@ export default function Transfer() {
 
   return (
     <form onSubmit={onSubmit}>
-      <Text>Transfer tokens!</Text>
-      <TextField.Root type="text" placeholder="Recipient" name="recipient" />
-      <TextField.Root
+      <h3>Transfer tokens!</h3>
+      <input type="text" placeholder="Recipient" name="recipient" />
+      <input
         type="number"
         step={stepValue ? stepValue : getStep(18)}
         min="0"
         placeholder="Amount"
         name="amount"
       />
-      <Button type="submit">Transfer</Button>
+      <button type="submit">Transfer</button>
     </form>
   );
 }

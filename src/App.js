@@ -4,9 +4,9 @@ import "./App.css";
 
 import React from "react";
 
-import Header from "./components/Header.jsx";
+import Header from "./components/Header/Header.jsx";
 import Modals from "./components/Modals.jsx";
-import Home from "./components/Home.jsx";
+import Home from "./components/Home/Home.jsx";
 import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient();
@@ -14,12 +14,12 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-        <div className="App">
-          <Header />
-          <Home />
-          <Modals />
-          <Toaster />
-        </div>
+      <div className="App">
+        <Header />
+        <Home />
+        <Modals />
+        <Toaster />
+      </div>
     </QueryClientProvider>
   );
 }

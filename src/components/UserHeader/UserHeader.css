@@ -1,0 +1,11 @@
+.user-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.info-section {
+    display: flex;
+    align-items: center;
+}

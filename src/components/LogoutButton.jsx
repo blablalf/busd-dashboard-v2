@@ -1,5 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { resetClients } from "../adapters/ClientsAdapter.js";
+import { Button } from "@radix-ui/themes";
 
 export default function LogoutButton() {
   const queryClient = useQueryClient();
@@ -7,6 +8,6 @@ export default function LogoutButton() {
     resetClients();
     queryClient.setQueryData(["userAddress"], null);
     queryClient.invalidateQueries({ queryKey: ["userAddress"] });
-  }
-  return <button onClick={logout}>Logout</button>;
+  };
+  return <Button onClick={logout}>Logout</Button>;
 }

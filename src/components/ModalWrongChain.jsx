@@ -1,6 +1,7 @@
 import ReactModal from "react-modal";
 import { switchChain } from "../adapters/ClientsAdapter.js";
 import useCheckRightChain from "../hooks/useCheckRightChain.js";
+import { Button } from "@radix-ui/themes";
 
 ReactModal.setAppElement("#root");
 
@@ -8,7 +9,7 @@ const ModalWrongChain = () => {
   // const [chainId, setChainId] = useState(null);
 
   const isRightChain = useCheckRightChain();
-  
+
   return (
     <ReactModal
       isOpen={!isRightChain}
@@ -33,7 +34,7 @@ const ModalWrongChain = () => {
     >
       <h2>Wrong Network</h2>
       {/* <p>You are connected to the following chainId: {chainId}</p> */}
-      <button onClick={switchChain}>Change to Sepolia network</button>
+      <Button onClick={switchChain}>Change to Sepolia network</Button>
     </ReactModal>
   );
 };

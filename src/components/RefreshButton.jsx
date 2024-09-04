@@ -1,4 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
+import { Button } from "@radix-ui/themes";
 
 export default function RefreshButton() {
   const queryClient = useQueryClient();
@@ -6,5 +7,5 @@ export default function RefreshButton() {
     queryClient.invalidateQueries(); // Invalidate all queries
   };
 
-  return <button onClick={refresh}>Refresh data</button>;
+  return <Button onClick={refresh}>Refresh data</Button>;
 }

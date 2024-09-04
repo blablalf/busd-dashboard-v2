@@ -7,6 +7,6 @@ export default function LogoutButton() {
     resetClients();
     queryClient.setQueryData(["userAddress"], null);
     queryClient.invalidateQueries({ queryKey: ["userAddress"] });
-  }
-  return <button onClick={logout}>Logout</button>;
+  };
+  return <Button onClick={logout}>Logout</Button>;
 }

@@ -1,13 +1,19 @@
 import useTransferToken from "../hooks/useTransferToken";
+import { Button, Text, TextField } from "@radix-ui/themes";
+import { getStep } from "../utils/Decimals";
+import useGetTokenDecimals from "../hooks/useGetTokenDecimals";
+import { parseUnits } from "viem";
 
 export default function Transfer() {
   const { mutate: transfer } = useTransferToken();
+  const { data: tokenDecimals } = useGetTokenDecimals();
+  const stepValue = getStep(tokenDecimals);
   // useWatchTransferEvent(amount);
 
   function onSubmit(event) {
     event.preventDefault();
     const amount = event.target.elements.amount.value;
-    const parsedAmount = parseFloat(amount);
+    const parsedAmount = parseUnits(amount, tokenDecimals);
     const recipient = event.target.elements.recipient.value;
     transfer({ to: recipient, amount: parsedAmount });
     // setAmount(parsedAmount);
@@ -15,10 +21,16 @@ export default function Transfer() {
 
   return (
     <form onSubmit={onSubmit}>
-      <h3>Transfer tokens!</h3>
-      <input type="text" placeholder="Recipient" name="recipient" />
-      <input type="number" placeholder="Amount" name="amount" />
-      <button type="submit">Transfer</button>
+      <Text>Transfer tokens!</Text>
+      <TextField.Root type="text" placeholder="Recipient" name="recipient" />
+      <TextField.Root
+        type="number"
+        step={stepValue ? stepValue : getStep(18)}
+        min="0"
+        placeholder="Amount"
+        name="amount"
+      />
+      <Button type="submit">Transfer</Button>
     </form>
   );
 }

@@ -1,4 +1,4 @@
-import ModalWrongChain from "./ModalWrongChain";
+import ModalWrongChain from "./ModalWrongChain/ModalWrongChain";
 
 import useIsLoggedIn from "../hooks/useIsLoggedIn";
 

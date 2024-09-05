@@ -18,8 +18,8 @@ export default function Header() {
           <RefreshButton />
           <a href="#manage-supply">Manage Supply</a>
           <a href="#manage-approvals">Manage Approvals</a>
-          <a href="#manage-supply">Manage Transfers</a>
-          {isUserOwner ? <a href="#manage-supply">Manage Ownership</a> : <></>}
+          <a href="#manage-transfers">Manage Transfers</a>
+          {isUserOwner ? <a href="#manage-ownership">Manage Ownership</a> : <></>}
           <UserAddress />
           <LogoutButton />
         </>

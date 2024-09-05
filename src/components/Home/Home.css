@@ -3,39 +3,42 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 60px;
 }
 
 .double-action-container {
     display: flex;
     justify-content: center;
+    border-radius: 30px;
+    background-color: #240046;
+    margin-top: 45px;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    width: 50%;
 }
 
-button {
-    cursor: pointer;
-    outline: 0;
-    color: #fff;
-    background-color: #0d6efd;
-    border-color: #3f85ed;
-    display: inline-block;
-    font-weight: 400;
-    line-height: 1.5;
-    text-align: center;
-    border: 1px solid transparent;
-    padding: 6px 12px;
-    font-size: 16px;
-    border-radius: .25rem;
+.double-action-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
-/* Create a stylish h1 style with a cool font */
-h1 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 2rem;
-    color: white;
+.double-action-container form button {
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 4px;
 }
 
-input {
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+.double-action-container form p {
+    margin-left: 5px;
+    margin-top: 15px;
+    margin-bottom: 4px;
+}
+
+.double-action-container form h3 {
+    margin-left: 5px;
+    margin-top: 4px;
+    margin-bottom: 10px;
 }

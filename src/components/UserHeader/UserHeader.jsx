@@ -41,7 +41,7 @@ export default function UserHeader() {
         </div>
         <div className="info">
           <h3>{tokenName} address</h3>
-          <a href={"https://sepolia.etherscan.io/address/" + tokenAddress}>
+          <a href={"https://sepolia.etherscan.io/address/" + tokenAddress} target="_blank" rel="noopener noreferrer">
             {tokenAddress}
           </a>
         </div>

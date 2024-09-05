@@ -8,7 +8,7 @@ const TransactionToast = ({ message, hash }) => {
     <div className="transaction-toast">
       <FcOk />
       <div>{message} </div>
-      <a href={"https://sepolia.etherscan.io/tx/" + hash}>{hash}</a>
+      <a href={"https://sepolia.etherscan.io/tx/" + hash} target="_blank" rel="noopener noreferrer">{hash}</a>
     </div>
   );
 };

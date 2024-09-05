@@ -54,3 +54,19 @@ h3 {
 a {
   color: white;
 }
+
+#manage-supply {
+  scroll-margin-top: 150px;
+}
+
+#manage-approvals {
+  scroll-margin-top: 150px;
+}
+
+#manage-transfers {
+  scroll-margin-top: 150px;
+}
+
+#manage-ownerships {
+  scroll-margin-top: 150px;
+}

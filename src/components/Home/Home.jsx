@@ -18,9 +18,9 @@ export default function Home() {
   const isUserOwner = useIsUserOwner();
 
   return (
-    <div>
+    <div class="home-container">
       {isLoggedIn ? (
-        <div class="home-container">
+        <div class="home-connected-container">
           <UserHeader />
           <div class="double-action-container" id="manage-supply">
             <Mint />

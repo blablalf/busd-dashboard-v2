@@ -14,6 +14,7 @@ export default function useMintToken() {
     },
     onError: (error) => {
       toast.error("Mint transaction failed");
+      console.error("Mint transaction failed", error);
     },
   });
 }

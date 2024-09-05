@@ -2,11 +2,10 @@
     background-color: #9D4EDD;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     position: relative;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 10px black;
+    box-shadow: 0 1px 7px #151515;
 }
 
 .modal h2 {

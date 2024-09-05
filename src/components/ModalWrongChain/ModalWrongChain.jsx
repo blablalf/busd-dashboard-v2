@@ -34,7 +34,7 @@ const ModalWrongChain = () => {
     >
       <h2>Wrong Network</h2>
       {/* <p>You are connected to the following chainId: {chainId}</p> */}
-      <div class="button-container">
+      <div className="button-container">
         <button onClick={switchChain}>Change to Sepolia network</button>
         <LogoutButton />
       </div>

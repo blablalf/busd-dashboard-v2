@@ -18,24 +18,24 @@ export default function Home() {
   const isUserOwner = useIsUserOwner();
 
   return (
-    <div class="home-container">
+    <div className="home-container">
       {isLoggedIn ? (
-        <div class="home-connected-container">
+        <div className="home-connected-container">
           <UserHeader />
-          <div class="double-action-container" id="manage-supply">
+          <div className="double-action-container" id="manage-supply">
             <Mint />
             <Burn />
           </div>
-          <div class="double-action-container" id="manage-approvals">
+          <div className="double-action-container" id="manage-approvals">
             <Approve />
             <Allowance />
           </div>
-          <div class="double-action-container" id="manage-transfers">
+          <div className="double-action-container" id="manage-transfers">
             <Transfer />
             <TransferFrom />
           </div>
           {isUserOwner ? (
-            <div class="double-action-container" id="manage-ownership">
+            <div className="double-action-container" id="manage-ownership">
               <Owner />
               <TransferOwnership />
             </div>

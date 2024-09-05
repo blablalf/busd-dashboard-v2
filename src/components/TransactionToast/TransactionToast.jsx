@@ -5,7 +5,7 @@ import "./TransactionToast.css";
 
 const TransactionToast = ({ message, hash }) => {
   return (
-    <div class="transaction-toast">
+    <div className="transaction-toast">
       <FcOk />
       <div>{message} </div>
       <a href={"https://sepolia.etherscan.io/tx/" + hash}>{hash}</a>

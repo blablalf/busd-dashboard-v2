@@ -35,11 +35,11 @@ export default function UserHeader() {
   return (
     <div className="user-header">
       <div className="info-container">
-        <div class="info">
+        <div className="info">
           <h3>Ether balance</h3>
           <p>{formattedEtherBalance}</p>
         </div>
-        <div class="info">
+        <div className="info">
           <h3>{tokenName} address</h3>
           <a href={"https://sepolia.etherscan.io/address/" + tokenAddress}>
             {tokenAddress}
@@ -47,11 +47,11 @@ export default function UserHeader() {
         </div>
       </div>
       <div className="info-container">
-        <div class="info">
+        <div className="info">
           <h3>{tokenName} total supply</h3>
           <p>{formattedSupply}</p>
         </div>
-        <div class="info">
+        <div className="info">
           <h3>Your {tokenName} balance</h3>
           <p>{formattedTokenBalance}</p>
         </div>

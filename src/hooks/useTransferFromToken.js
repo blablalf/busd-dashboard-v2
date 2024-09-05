@@ -19,7 +19,7 @@ export default function useTransferFromToken() {
   const transferFrom = async (tokenAddress, spender, ownerAddress, recipient, amount) => {
     const allowance = await getAllowance(tokenAddress, ownerAddress, spender);
     if (allowance >= amount) {
-      await transferFromToken(tokenAddress, userAddress, ownerAddress, recipient, amount);
+      return await transferFromToken(tokenAddress, userAddress, ownerAddress, recipient, amount);
     } else {
       const parsedAllowance = formatUnits(allowance, decimals);
       const error = new Error("You do not have enough allowance to do this. Current allowance: " + parsedAllowance);

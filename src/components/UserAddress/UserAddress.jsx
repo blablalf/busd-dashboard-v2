@@ -2,7 +2,7 @@ import useGetUserAddress from "../../hooks/useGetUserAddress";
 import useCheckChainId from "../../hooks/useGetChainId";
 import toast from "react-hot-toast";
 import "./UserAddress.css";
-import { FiClipboard, FiCopy } from "react-icons/fi";
+import { FiCopy } from "react-icons/fi";
 
 export default function UserAddress() {
   const { data: userAddress } = useGetUserAddress();

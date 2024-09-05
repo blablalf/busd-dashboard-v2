@@ -4,6 +4,7 @@ import Allowance from "../Allowance.jsx";
 import Approve from "../Approve.jsx";
 import Burn from "../Burn.jsx";
 import Mint from "../Mint.jsx";
+import NotConnected from "../NotConnected/NotConnected.jsx";
 import Owner from "../Owner.jsx";
 import Transfer from "../Transfer.jsx";
 import TransferFrom from "../TransferFrom.jsx";
@@ -43,7 +44,7 @@ export default function Home() {
           )}
         </div>
       ) : (
-        <></>
+        <NotConnected />
       )}
     </div>
   );

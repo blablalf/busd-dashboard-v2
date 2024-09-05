@@ -34,20 +34,27 @@ export default function UserHeader() {
 
   return (
     <div className="user-header">
-      <div className="info-section">
-      <p>Ether balance: {formattedEtherBalance}</p>
-      <p>
-        {tokenName} address:
-      </p>
-      <a href={"https://sepolia.etherscan.io/address/" + tokenAddress}>{tokenAddress}</a>
+      <div className="info-container">
+        <div class="info">
+          <h3>Ether balance</h3>
+          <p>{formattedEtherBalance}</p>
+        </div>
+        <div class="info">
+          <h3>{tokenName} address</h3>
+          <a href={"https://sepolia.etherscan.io/address/" + tokenAddress}>
+            {tokenAddress}
+          </a>
+        </div>
       </div>
-      <div className="info-section">
-      <p>
-        {tokenName} total supply: {formattedSupply}
-      </p>
-      <p>
-        {tokenName} balance: {formattedTokenBalance}
-      </p>
+      <div className="info-container">
+        <div class="info">
+          <h3>{tokenName} total supply</h3>
+          <p>{formattedSupply}</p>
+        </div>
+        <div class="info">
+          <h3>Your {tokenName} balance</h3>
+          <p>{formattedTokenBalance}</p>
+        </div>
       </div>
     </div>
   );

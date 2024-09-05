@@ -4,6 +4,7 @@ import useCheckRightChain from "../../hooks/useCheckRightChain.js";
 
 import "./ModalWrongChain.css";
 import { useEffect } from "react";
+import LogoutButton from "../LogoutButton.jsx";
 
 ReactModal.setAppElement("#root");
 
@@ -14,13 +15,13 @@ const ModalWrongChain = () => {
 
   useEffect(() => {
     if (!isRightChain) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     }
 
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     };
   }, [isRightChain]);
 
@@ -33,7 +34,10 @@ const ModalWrongChain = () => {
     >
       <h2>Wrong Network</h2>
       {/* <p>You are connected to the following chainId: {chainId}</p> */}
-      <button onClick={switchChain}>Change to Sepolia network</button>
+      <div class="button-container">
+        <button onClick={switchChain}>Change to Sepolia network</button>
+        <LogoutButton />
+      </div>
     </ReactModal>
   );
 };
